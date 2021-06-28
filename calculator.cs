@@ -9,25 +9,15 @@ namespace chelgrave_challenge
         {
 
             //room detail variables   	
-            double room_perimeter_in_metres;
-            double wall_height_in_metres;
-            int number_of_doors;
-            int number_of_double_windows;
-            double length_of_repeats;
-            double price_per_roll;
-            string room_perimeter_in_metres_string;
-            string wall_height_in_metres_string;
-            string number_of_doors_string;
-            string number_of_double_windows_string;
-            string length_of_repeats_string;
-            string price_per_roll_string;
-            string wallpaper_type;
-
-            //testing variables
-            bool answer_test;
+            double room_perimeter_in_metres=0.0;
+            double wall_height_in_metres=0.0;
+            int number_of_doors=0;
+            int number_of_double_windows=0;
+            double length_of_repeats=0.0;
+            double price_per_roll=0.0;
+            string type_of_wallpaper=" ";
 
             //wallpaper variables
-            string[] wallpaper_types = { "Standard", "European" };
             string[] formula_resultants;
 
             //clean the console
@@ -40,110 +30,12 @@ namespace chelgrave_challenge
             System.Console.WriteLine(" ");
 
             //get the relevant values from the user for the first time
-            System.Console.Write("1: What is the Room Perimeter (metres): ");
-            room_perimeter_in_metres_string = System.Console.ReadLine();
-            answer_test = double.TryParse(room_perimeter_in_metres_string, out room_perimeter_in_metres);
-            if (answer_test==false)
-            {
-                do
-                {
-                    System.Console.WriteLine($"Incorrect answer - you selected {room_perimeter_in_metres_string} - you must enter a number");
-                    System.Console.Write("1: What is the Room Perimeter (metres): ");
-                    room_perimeter_in_metres_string = System.Console.ReadLine();
-                    answer_test = double.TryParse(room_perimeter_in_metres_string, out room_perimeter_in_metres);
+			for (int first_time_data=1; first_time_data<8;first_time_data++)
+			{
+				menu_select(first_time_data, ref room_perimeter_in_metres, ref wall_height_in_metres, ref number_of_doors, ref number_of_double_windows, ref length_of_repeats, ref price_per_roll, ref type_of_wallpaper);
+			}
 
-                } while (answer_test==false);
-            }
-
-            System.Console.Write("2: What is the Wall Height (metres): ");
-            wall_height_in_metres_string = System.Console.ReadLine();
-            answer_test = double.TryParse(wall_height_in_metres_string, out wall_height_in_metres);
-            if (answer_test==false)
-            {
-                do
-                {
-                    System.Console.WriteLine($"Incorrect answer - you selected {wall_height_in_metres_string} - you must enter a number");
-                    System.Console.Write("2: What is the Wall Height (metres): ");
-                    wall_height_in_metres_string = System.Console.ReadLine();
-                    answer_test = double.TryParse(wall_height_in_metres_string, out wall_height_in_metres);
-
-                } while (answer_test==false);
-            }
-
-            System.Console.Write("3: How many Doors are Installed: ");
-            number_of_doors_string = System.Console.ReadLine();
-            answer_test = int.TryParse(number_of_doors_string, out number_of_doors);
-            if (answer_test==false)
-            {
-                do
-                {
-                    System.Console.WriteLine($"Incorrect answer - you selected {number_of_doors_string} - you must enter a number (no decimals)");
-                    System.Console.Write("3: How many Doors are Installed: ");
-                    number_of_doors_string = System.Console.ReadLine();
-                    answer_test = int.TryParse(number_of_doors_string, out number_of_doors);
-
-                } while (answer_test==false);
-            }
-
-            System.Console.Write("4: How many Double Windows are Installed: ");
-            number_of_double_windows_string = System.Console.ReadLine();
-            answer_test = int.TryParse(number_of_double_windows_string, out number_of_double_windows);
-            if (answer_test==false)
-            {
-                do
-                {
-                    System.Console.WriteLine($"Incorrect answer - you selected {number_of_double_windows_string} - you must enter a number (no decimals)");
-                    System.Console.Write("4: How many Double Windows are Installed: ");
-                    number_of_double_windows_string = System.Console.ReadLine();
-                    answer_test = int.TryParse(number_of_double_windows_string, out number_of_double_windows);
-
-                } while (answer_test==false);
-            }
-
-            System.Console.Write("5: What is the Length of the Wallpaper Pattern (metres): ");
-            length_of_repeats_string = System.Console.ReadLine();
-            answer_test = double.TryParse(length_of_repeats_string, out length_of_repeats);
-            if (answer_test==false)
-            {
-                do
-                {
-                    System.Console.WriteLine($"Incorrect answer - you selected {length_of_repeats_string} - you must enter a number");
-                    System.Console.Write("5: What is the Length of the Wallpaper Pattern (metres) ");
-                    length_of_repeats_string = System.Console.ReadLine();
-                    answer_test = double.TryParse(length_of_repeats_string, out length_of_repeats);
-
-                } while (answer_test==false);
-            }
-
-            System.Console.Write("6: What is the Price Per Roll (dollars): ");
-            price_per_roll_string = System.Console.ReadLine();
-            answer_test = double.TryParse(price_per_roll_string, out price_per_roll);
-            if (answer_test==false)
-            {
-                do
-                {
-                    System.Console.WriteLine($"Incorrect answer - you selected {price_per_roll_string} - you must enter a number");
-                    System.Console.Write("6: What is the Price Per Roll (dollars): ");
-                    price_per_roll_string = System.Console.ReadLine();
-                    answer_test = double.TryParse(price_per_roll_string, out price_per_roll);
-
-                } while (answer_test==false);
-            }
-
-            System.Console.Write("7: What Type of Wallpaper are you Using (european or standard): ");
-            wallpaper_type = System.Console.ReadLine();
-            if ((wallpaper_type != "european") & (wallpaper_type != "standard"))
-            {
-                do 
-                {
-                    System.Console.WriteLine($"Incorrect answer - you selected {wallpaper_type} - you must select either the european or standard");
-                    System.Console.Write("7: What Type of Wallpaper are you Using (european or standard): ");
-                    wallpaper_type = System.Console.ReadLine();
-                }
-                while ((wallpaper_type != "european") & (wallpaper_type != "standard"));
-            }
-
-
+			System.Console.WriteLine($"{room_perimeter_in_metres}");
 
             //calculate, then print the values inputted and the resultant answer
             //repeat untill the user exits the console
@@ -155,8 +47,8 @@ namespace chelgrave_challenge
             {
                 
                 System.Console.Clear();
-                formula_resultants = formulas(room_perimeter_in_metres, wall_height_in_metres, number_of_doors, number_of_double_windows, length_of_repeats, price_per_roll, wallpaper_type);
-                print_result(room_perimeter_in_metres, wall_height_in_metres, number_of_doors, number_of_double_windows, length_of_repeats, price_per_roll, wallpaper_type, formula_resultants);
+                formula_resultants = formulas(room_perimeter_in_metres, wall_height_in_metres, number_of_doors, number_of_double_windows, length_of_repeats, price_per_roll, type_of_wallpaper);
+                print_result(room_perimeter_in_metres, wall_height_in_metres, number_of_doors, number_of_double_windows, length_of_repeats, price_per_roll, type_of_wallpaper, formula_resultants);
 
                 System.Console.WriteLine("If you want to change any of your user defined values, enter the number corresponding to that selection below.");
                 System.Console.WriteLine("Otherwise, type 'exit' to leave the program.");
@@ -168,136 +60,189 @@ namespace chelgrave_challenge
                 {
                    break; 
                 }
-                else if (int.TryParse(user_selection, out user_selection_int))
-                {
-                    if (System.Convert.ToInt32(user_selection)<8 & System.Convert.ToInt32(user_selection)>0 )
-                    {
-                        switch (System.Convert.ToInt32(user_selection))
-                        {
+				else if (int.TryParse(user_selection, out user_selection_int))
+				{
+					menu_select(user_selection_int, ref room_perimeter_in_metres, ref wall_height_in_metres, ref number_of_doors, ref number_of_double_windows, ref length_of_repeats, ref price_per_roll, ref type_of_wallpaper);
+				}
 
-                            case 1:
-                                System.Console.Write("1: What is the Room Perimeter (metres): ");
-                                room_perimeter_in_metres_string = System.Console.ReadLine();
-                                answer_test = double.TryParse(room_perimeter_in_metres_string, out room_perimeter_in_metres);
-                                if (answer_test==false)
-                                {
-                                    do
-                                    {
-                                        System.Console.WriteLine($"Incorrect answer - you selected {room_perimeter_in_metres_string} - you must enter a number");
-                                        System.Console.Write("1: What is the Room Perimeter (metres): ");
-                                        room_perimeter_in_metres_string = System.Console.ReadLine();
-                                        answer_test = double.TryParse(room_perimeter_in_metres_string, out room_perimeter_in_metres);
-
-                                    } while (answer_test==false);
-                                }
-                                break;
-
-                            case 2:
-                                System.Console.Write("2: What is the Wall Height (metres): ");
-                                wall_height_in_metres_string = System.Console.ReadLine();
-                                answer_test = double.TryParse(wall_height_in_metres_string, out wall_height_in_metres);
-                                if (answer_test==false)
-                                {
-                                    do
-                                    {
-                                        System.Console.WriteLine($"Incorrect answer - you selected {wall_height_in_metres_string} - you must enter a number");
-                                        System.Console.Write("2: What is the Wall Height (metres): ");
-                                        wall_height_in_metres_string = System.Console.ReadLine();
-                                        answer_test = double.TryParse(wall_height_in_metres_string, out wall_height_in_metres);
-
-                                    } while (answer_test==false);
-                                }
-                                break;
-
-                            case 3:
-                                System.Console.Write("3: How many Doors are Installed: ");
-                                number_of_doors_string = System.Console.ReadLine();
-                                answer_test = int.TryParse(number_of_doors_string, out number_of_doors);
-                                if (answer_test==false)
-                                {
-                                    do
-                                    {
-                                        System.Console.WriteLine($"Incorrect answer - you selected {number_of_doors_string} - you must enter a number (no decimals)");
-                                        System.Console.Write("3: How many Doors are Installed: ");
-                                        number_of_doors_string = System.Console.ReadLine();
-                                        answer_test = int.TryParse(number_of_doors_string, out number_of_doors);
-
-                                    } while (answer_test==false);
-                                }
-                                break;
-
-                            case 4:
-                                System.Console.Write("4: How many Double Windows are Installed: ");
-                                number_of_double_windows_string = System.Console.ReadLine();
-                                answer_test = int.TryParse(number_of_double_windows_string, out number_of_double_windows);
-                                if (answer_test==false)
-                                {
-                                    do
-                                    {
-                                        System.Console.WriteLine($"Incorrect answer - you selected {number_of_double_windows_string} - you must enter a number (no decimals)");
-                                        System.Console.Write("4: How many Double Windows are Installed: ");
-                                        number_of_double_windows_string = System.Console.ReadLine();
-                                        answer_test = int.TryParse(number_of_double_windows_string, out number_of_double_windows);
-
-                                    } while (answer_test==false);
-                                }
-                                break;
-
-                            case 5:
-                                System.Console.Write("5: What is the Length of the Wallpaper Pattern (metres): ");
-                                length_of_repeats_string = System.Console.ReadLine();
-                                answer_test = double.TryParse(length_of_repeats_string, out length_of_repeats);
-                                if (answer_test==false)
-                                {
-                                    do
-                                    {
-                                        System.Console.WriteLine($"Incorrect answer - you selected {length_of_repeats_string} - you must enter a number");
-                                        System.Console.Write("5: What is the Length of the Wallpaper Pattern (metres): ");
-                                        length_of_repeats_string = System.Console.ReadLine();
-                                        answer_test = double.TryParse(length_of_repeats_string, out length_of_repeats);
-
-                                    } while (answer_test==false);
-                                }
-                                break;
-
-                            case 6:
-                                System.Console.Write("6: What is the Price Per Roll (dollars): ");
-                                price_per_roll_string = System.Console.ReadLine();
-                                answer_test = double.TryParse(price_per_roll_string, out price_per_roll);
-                                if (answer_test==false)
-                                {
-                                    do
-                                    {
-                                        System.Console.WriteLine($"Incorrect answer - you selected {price_per_roll_string} - you must enter a number");
-                                        System.Console.Write("6: What is the Price Per Roll (dollars): ");
-                                        price_per_roll_string = System.Console.ReadLine();
-                                        answer_test = double.TryParse(price_per_roll_string, out price_per_roll);
-
-                                    } while (answer_test==false);
-                                }
-                                break;
-
-                            case 7:
-                                System.Console.Write("7: What Type of Wallpaper are you Using (european or standard): ");
-                                wallpaper_type = System.Console.ReadLine();
-                                if ((wallpaper_type != "european") & (wallpaper_type != "standard"))
-                                {
-                                    do 
-                                    {
-                                        System.Console.WriteLine($"Incorrect answer - you selected {wallpaper_type} - you must select either the european or standard");
-                                        System.Console.Write("7: What Type of Wallpaper are you Using (european or standard): ");
-                                        wallpaper_type = System.Console.ReadLine();
-                                    }
-                                    while ((wallpaper_type != "european") & (wallpaper_type != "standard"));
-                                }
-                                break;
-                        }
-                    }
-                    
-                }
             } while (user_selection!="exit");
 
         }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    	static void menu_select(int selector, ref double room_perimeter, ref double wall_height, ref int door_number, ref int double_window_number, ref double repeat_length, ref double roll_price, ref string wallpaper_type)
+    	{
+    		
+	        string room_perimeter_in_metres_string;
+            string wall_height_in_metres_string;
+            string number_of_doors_string;
+            string number_of_double_windows_string;
+            string length_of_repeats_string;
+            string price_per_roll_string;
+    		bool answer_test;
+    		
+    		if (selector==1)
+    		{
+
+		        System.Console.Write("1: What is the Room Perimeter (metres): ");
+		        room_perimeter_in_metres_string = System.Console.ReadLine();
+		        answer_test = double.TryParse(room_perimeter_in_metres_string, out room_perimeter);
+		        if (answer_test==false)
+		        {
+		            do
+		            {
+		                System.Console.WriteLine($"Incorrect answer - you selected {room_perimeter_in_metres_string} - you must enter a number");
+		                System.Console.Write("1: What is the Room Perimeter (metres): ");
+		                room_perimeter_in_metres_string = System.Console.ReadLine();
+		                answer_test = double.TryParse(room_perimeter_in_metres_string, out room_perimeter);
+
+		            } while (answer_test==false);
+		        }
+
+			}
+			else if (selector==2)
+			{	
+
+		        System.Console.Write("2: What is the Wall Height (metres): ");
+		        wall_height_in_metres_string = System.Console.ReadLine();
+		        answer_test = double.TryParse(wall_height_in_metres_string, out wall_height);
+		        if (answer_test==false)
+		        {
+		            do
+		            {
+		                System.Console.WriteLine($"Incorrect answer - you selected {wall_height_in_metres_string} - you must enter a number");
+		                System.Console.Write("2: What is the Wall Height (metres): ");
+		                wall_height_in_metres_string = System.Console.ReadLine();
+		                answer_test = double.TryParse(wall_height_in_metres_string, out wall_height);
+
+		            } while (answer_test==false);
+		        }
+
+			}
+			else if (selector==3)
+			{	
+
+		        System.Console.Write("3: How many Doors are Installed: ");
+		        number_of_doors_string = System.Console.ReadLine();
+		        answer_test = int.TryParse(number_of_doors_string, out door_number);
+		        if (answer_test==false)
+		        {
+		            do
+		            {
+		                System.Console.WriteLine($"Incorrect answer - you selected {number_of_doors_string} - you must enter a number (no decimals)");
+		                System.Console.Write("3: How many Doors are Installed: ");
+		                number_of_doors_string = System.Console.ReadLine();
+		                answer_test = int.TryParse(number_of_doors_string, out door_number);
+
+		            } while (answer_test==false);
+		        }
+
+			}
+			else if (selector==4)
+			{	
+
+		        System.Console.Write("4: How many Double Windows are Installed: ");
+		        number_of_double_windows_string = System.Console.ReadLine();
+		        answer_test = int.TryParse(number_of_double_windows_string, out double_window_number);
+		        if (answer_test==false)
+		        {
+		            do
+		            {
+		                System.Console.WriteLine($"Incorrect answer - you selected {number_of_double_windows_string} - you must enter a number (no decimals)");
+		                System.Console.Write("4: How many Double Windows are Installed: ");
+		                number_of_double_windows_string = System.Console.ReadLine();
+		                answer_test = int.TryParse(number_of_double_windows_string, out double_window_number);
+
+		            } while (answer_test==false);
+		        }
+
+			}
+			else if (selector==5)
+			{	
+
+		        System.Console.Write("5: What is the Length of the Wallpaper Pattern (metres): ");
+		        length_of_repeats_string = System.Console.ReadLine();
+		        answer_test = double.TryParse(length_of_repeats_string, out repeat_length);
+		        if (answer_test==false)
+		        {
+		            do
+		            {
+		                System.Console.WriteLine($"Incorrect answer - you selected {length_of_repeats_string} - you must enter a number");
+		                System.Console.Write("5: What is the Length of the Wallpaper Pattern (metres) ");
+		                length_of_repeats_string = System.Console.ReadLine();
+		                answer_test = double.TryParse(length_of_repeats_string, out repeat_length);
+
+		            } while (answer_test==false);
+		        }
+
+			}
+			else if (selector==6)
+			{	
+
+		        System.Console.Write("6: What is the Price Per Roll (dollars): ");
+		        price_per_roll_string = System.Console.ReadLine();
+		        answer_test = double.TryParse(price_per_roll_string, out roll_price);
+		        if (answer_test==false)
+		        {
+		            do
+		            {
+		                System.Console.WriteLine($"Incorrect answer - you selected {price_per_roll_string} - you must enter a number");
+		                System.Console.Write("6: What is the Price Per Roll (dollars): ");
+		                price_per_roll_string = System.Console.ReadLine();
+		                answer_test = double.TryParse(price_per_roll_string, out roll_price);
+
+		            } while (answer_test==false);
+		        }
+
+			}
+			else if (selector==7)
+			{	
+
+		        System.Console.Write("7: What Type of Wallpaper are you Using (european or standard): ");
+		        wallpaper_type = System.Console.ReadLine();
+		        if ((wallpaper_type != "european") & (wallpaper_type != "standard"))
+		        {
+		            do 
+		            {
+		                System.Console.WriteLine($"Incorrect answer - you selected {wallpaper_type} - you must select either the european or standard");
+		                System.Console.Write("7: What Type of Wallpaper are you Using (european or standard): ");
+		                wallpaper_type = System.Console.ReadLine();
+		            }
+		            while ((wallpaper_type != "european") & (wallpaper_type != "standard"));
+		        }
+
+			}
+			else
+			{
+				System.Console.Write("Incorrect choice - you need to select a number between 1 and 7 (inclusive)");	
+            }
+    	}
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     
         //calculate the values needed
         static string[] formulas(double room_perimeter, double wall_height, int door_number, int double_window_number, double repeat_length, double roll_price, string wallpaper_type)
@@ -320,6 +265,25 @@ namespace chelgrave_challenge
             return new string[] {System.Convert.ToString(length_of_paper), System.Convert.ToString(roll_count), System.Convert.ToString(total_price)};
             
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         //print all the necessary details
